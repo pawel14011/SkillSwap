@@ -26,19 +26,18 @@ npm run dev
 - Obsługa rejestracji, logowania (JWT), dodawania ofert, dopasowywania użytkowników, czatu w czasie rzeczywistym oraz panelu administratora.
 - Kod powinien być zorganizowany w oddzielne foldery (frontend/backend), z zastosowaniem REST API, React Router, TailwindCSS.
 
-### Funkcjonalności:
-1. Rejestracja i logowanie użytkowników (JWT) /zrobione
-2. Edytowalny profil użytkownika /tylko dodać frontend
-3. Dodawanie ofert (umiejętność, lokalizacja, czego chcesz się nauczyć) /zrobione
-4. System dopasowywania na podstawie ofert /tylko dodać frontend
-5. Lista dopasowań z możliwością akceptacji /tylko dodać frontend
-6. Komunikator czatu (WebSocket – socket.io) /nie wgłebiałem się
-7. System oceniania po zakończonej wymianie /nie wgłebiałem się
-8. Panel administratora (zarządzanie użytkownikami i ofertami)/nie wgłebiałem się
-9. Prosty system powiadomień (np. toast) /nie wgłebiałem się
+### Funkcjonalności: (w założeniu)
+1. Rejestracja i logowanie użytkowników (JWT) 
+2. Edytowalny profil użytkownika 
+3. Dodawanie ofert (umiejętność, lokalizacja, czego chcesz się nauczyć)
+4. System dopasowywania na podstawie ofert 
+5. Lista dopasowań z możliwością akceptacji 
+6. Komunikator czatu (WebSocket – socket.io)
+7. System oceniania po zakończonej wymianie 
+8. Panel administratora (zarządzanie użytkownikami i ofertami)
+9. Prosty system powiadomień (np. toast) 
 
 
 ### Baza danych (MySQL):
 - Tabele: Users, Skills, Offers, Matches, Messages, Reviews, Notifications
 - ORM: Prisma
-- Wszystkie relacje mają być zdefiniowane, np. 1:N user → offers, N:N skills ↔ offers
