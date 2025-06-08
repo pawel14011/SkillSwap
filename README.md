@@ -104,7 +104,7 @@ ORM: **Prisma** – zdefiniowane relacje i migracje.
 
 ---
 
-![Zrzut ekranu aplikacji]([https://i.imgur.com/nazwaTwojegoObrazka.png](https://lh3.google.com/u/0/d/152nzkg3-HYUIIoA2pQ-a…TPuSzYNu1=w1920-h1031-iv1?auditContext=forDisplay))
+![Zrzut ekranu aplikacji](https://lh3.google.com/u/0/d/152nzkg3-HYUIIoA2pQ-acdeTPuSzYNu1=w835-h1015-iv1?auditContext=forDisplay)
 
 
 
