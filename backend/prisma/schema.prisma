@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  username     String    @unique
+  password     String
+  firstName    String?
+  lastName     String?
+  location     String?
+  bio          String?   @db.Text
+  avatarUrl    String?
+  role         UserRole  @default(USER)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  offers       Offer[]
+  reviewsGiven Review[]  @relation("reviewsGiven")
+  reviewsGot   Review[]  @relation("reviewsGot")
+  sentMessages Message[] @relation("sentMessages")
+  gotMessages  Message[] @relation("gotMessages")
+  notifications Notification[]
+  matchesAsUser1 Match[] @relation("user1")
+  matchesAsUser2 Match[] @relation("user2")
+}
+
+model Skill {
+  id      Int      @id @default(autoincrement())
+  name    String   @unique
+  offers  Offer[]
+}
+
+model Offer {
+  id                String   @id @default(cuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skillId           Int
+  skill             Skill    @relation(fields: [skillId], references: [id])
+  description       String   @db.Text
+  desiredSkill      String   // Umiejętność, której użytkownik szuka w zamian
+  level             SkillLevel @default(BEGINNER)
+  availability      String?  // Np. "Wieczory w tygodniu"
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Match {
+  id        String      @id @default(cuid())
+  user1Id   String
+  user1     User        @relation("user1", fields: [user1Id], references: [id], onDelete: Cascade)
+  user2Id   String
+  user2     User        @relation("user2", fields: [user2Id], references: [id], onDelete: Cascade)
+  offer1Id  String
+  offer2Id  String
+  status    MatchStatus @default(PENDING) // PENDING, ACCEPTED, REJECTED, COMPLETED
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  messages  Message[]
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  matchId   String
+  match     Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  senderId  String
+  sender    User     @relation("sentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  receiverId String
+  receiver  User     @relation("gotMessages", fields: [receiverId], references: [id], onDelete: Cascade)
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  rating      Int      // od 1 do 5
+  comment     String?  @db.Text
+  reviewerId  String
+  reviewer    User     @relation("reviewsGiven", fields: [reviewerId], references: [id], onDelete: NoAction)
+  reviewedId  String
+  reviewed    User     @relation("reviewsGot", fields: [reviewedId], references: [id], onDelete: NoAction)
+  matchId     String
+  createdAt   DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum SkillLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum MatchStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  COMPLETED
+  CANCELLED
+}
