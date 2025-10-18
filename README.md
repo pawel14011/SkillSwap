@@ -123,4 +123,21 @@ ORM: **Prisma** – zdefiniowane relacje i migracje.
 
 ## 📄 Licencja
 
-Projekt edukacyjny – open source, bez ograniczeń licencyjnych.
+Copyright (c) 2025 Paweł Szal
+
+Wszelkie prawa zastrzeżone.
+
+Niniejsze oprogramowanie i powiązana dokumentacja są własnością [Twoje Imię/Nazwa Firmy].
+Żadna część tego oprogramowania nie może być:
+- Kopiowana
+- Modyfikowana
+- Dystrybuowana
+- Publikowana
+- Sublicencjonowana
+- Sprzedawana
+
+bez uprzedniej pisemnej zgody właściciela praw autorskich.
+
+Używanie tego oprogramowania jest dozwolone wyłącznie przez osoby autoryzowane.
+Naruszenie tych warunków może skutkować konsekwencjami prawnymi.
+
